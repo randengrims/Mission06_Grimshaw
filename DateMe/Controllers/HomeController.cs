@@ -21,6 +21,10 @@ namespace DateMe.Controllers
         [HttpGet]
         public IActionResult MovieForm()
         {
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
             return View(new Application());
         }
 
@@ -29,7 +33,7 @@ namespace DateMe.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Applications.Add(response); // Add record to the database
+                _context.Movies.Add(response); // Add record to the database
                 _context.SaveChanges();
 
                 return View("Confirmation", response);
@@ -49,7 +53,7 @@ namespace DateMe.Controllers
 
         public IActionResult Waitlist()
         {
-            var applications = _context.Applications
+            var applications = _context.Movies
                 .Where(x => x.Edited == false)
                 .OrderBy(x => x.Title).ToList();
 
@@ -59,7 +63,11 @@ namespace DateMe.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var recordToEdit = _context.Applications
+            ViewBag.Categories = _context.Categories
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
+            var recordToEdit = _context.Movies
                 .Single(x => x.MovieId == id);
 
             return View("MovieForm", recordToEdit);
@@ -77,7 +85,7 @@ namespace DateMe.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var recordToDelete = _context.Applications
+            var recordToDelete = _context.Movies
                 .Single(x => x.MovieId == id);
 
             return View("DeleteView", recordToDelete);
@@ -86,7 +94,7 @@ namespace DateMe.Controllers
         [HttpPost]
         public IActionResult Delete(Application application)
         {
-            _context.Applications.Remove(application);
+            _context.Movies.Remove(application);
             _context.SaveChanges();
 
             return RedirectToAction("Waitlist");

@@ -9,7 +9,10 @@ namespace DateMe.Models
         [Required]
         public int MovieId { get; set; }
 
-        public string? Category { get; set; }
+        [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
+        public Category? Category { get; set; }
+
 
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
