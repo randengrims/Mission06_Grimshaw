@@ -25,7 +25,7 @@ namespace DateMe.Controllers
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
-            return View(new Application());
+            return View("MovieForm", new Application());
         }
 
         [HttpPost]
@@ -40,6 +40,10 @@ namespace DateMe.Controllers
             }
             else // invaldidate the data
             {
+                ViewBag.Categories = _context.Categories
+                    .OrderBy(x => x.CategoryName)
+                    .ToList();
+
                 return View(response);
             }
 
