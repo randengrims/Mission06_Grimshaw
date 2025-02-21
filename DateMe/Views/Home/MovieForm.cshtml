@@ -11,7 +11,7 @@
 <form method="post">
     <input type="hidden" asp-for="MovieId"/>
     <br />
-    <label asp-for="Category">Category</label>
+    <label asp-for="Category">Category</label> <!--This needs to become category id -->
     <input asp-for="Category"/>
     <br />
     <label asp-for="Title">Title</label>
@@ -42,6 +42,12 @@
     <br />
     <label asp-for="LentTo">This movie was lent to:</label>
     <input asp-for="LentTo"/>
+    <br />
+    <label asp-for="CopiedToPlex">Was this movie copied to Plex?</label>
+    <select>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
     <br />
     <label asp-for="Notes">Notes on the movie (i.e. How to watch)</label>
     <input asp-for="Notes" maxlength="25"/>
