@@ -15,9 +15,8 @@ namespace DateMe.Models
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Year is required.")]
-        [Range(1900, 2100, ErrorMessage = "Year must be between 1900 and 2100.")]
-        public int Year { get; set; }
+        [Required(ErrorMessage = "Year is required."), Range(1888, 2026, ErrorMessage = "Year must be between 1888 and 2026.")]
+        public int Year { get; set; } = 1888;
 
         [Required(ErrorMessage = "Director is required.")]
         public string Director { get; set; }

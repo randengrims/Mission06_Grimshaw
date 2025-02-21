@@ -21,16 +21,24 @@ namespace DateMe.Controllers
         [HttpGet]
         public IActionResult MovieForm()
         {
-            return View();
+            return View(new Application());
         }
 
         [HttpPost]
         public IActionResult MovieForm(Application response)
         {
-            _context.Applications.Add(response); // Add record to the database
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Applications.Add(response); // Add record to the database
+                _context.SaveChanges();
 
-            return View("Confirmation", response);
+                return View("Confirmation", response);
+            }
+            else // invaldidate the data
+            {
+                return View(response);
+            }
+
         }
         
         // Get to know Joel Page
