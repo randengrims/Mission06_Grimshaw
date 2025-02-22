@@ -6,7 +6,6 @@ namespace DateMe.Models
     public class Application
     {
         [Key]
-        [Required]
         public int MovieId { get; set; }
 
         [ForeignKey("CategoryId")]

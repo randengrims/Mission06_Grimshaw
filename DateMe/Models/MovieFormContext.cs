@@ -14,6 +14,8 @@ namespace DateMe.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) // Seed data for the dropdown
         {
+
+
             modelBuilder.Entity<Category>().HasData(
 
                 new Category { CategoryId = 1, CategoryName = "Miscellaneous" },
